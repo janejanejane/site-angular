@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'js/lib',
+    baseUrl: 'scripts/lib',
     paths: {
         app: '../app',
         jquery: '/bower_components/jquery/dist/jquery',
