@@ -5,7 +5,7 @@ define(['jquery', 'd3', 'app/chart'],
             console.log('main loaded!');
 
             var pdaf = pdaf || {};
-            pdaf.chart = new Chart();
+            pdaf.chart = new Chart($('.container').width(), $(window).height());
             pdaf.chart.initialize('#pdaf-chart', d3);
             pdaf.chart.addData();
         });
