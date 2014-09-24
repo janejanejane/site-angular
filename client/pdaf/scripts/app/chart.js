@@ -25,19 +25,31 @@ define(function(){
                                 return parseInt(d.Total);
                             })
                             .children(function(d) { return d.data; }),
-                tip = d3.tip()
-                          .attr('class', 'd3-tip')
-                          .offset([-10, 0])
-                          .html(function() {
-                            return "<strong>Frequency:</strong> <span style='color:red'>test</span>";
-                          }),
-                that = this;
+                that = this,
+                mousemove = function(d, total) {
+                    var xPosition = d3.event.pageX - 200,
+                        yPosition = d3.event.pageY;
+
+                    d3.select('#tooltip')
+                        .style('left', xPosition + 'px')
+                        .style('top', yPosition + 'px');
+                    d3.select('#tooltip #district')
+                        .text(d['District']);
+                    d3.select('#tooltip #legislator')
+                        .text(d['Legislator']);
+                    d3.select('#tooltip #total')
+                        .text('Php' + d['Total'] + ' (' + (parseInt(d['Total'])/parseInt(total)).toFixed(2) + '%)');
+                    d3.select('#tooltip').classed('hidden', false);
+                },
+                mouseout = function() {
+                    d3.select('#tooltip').classed('hidden', true);
+                };
 
             console.log('this.svg', this.svg);
 
             d3.json('scripts/data/releases.json', function(error, root) {
                 console.log('that?', that, root);
-                var node = that.svg.append("div")
+                var node = that.svg.append('div')
                                 .attr('class', 'main')
                                 .style('position', 'relative')
                                 .style('width', width + 'px')
@@ -49,16 +61,16 @@ define(function(){
                                 .attr('class', 'node')
                                 .call(position)
                                 .style('background', function(d) {
-                                    // console.log('style d:', d);
                                     return d.District ? color(d.parent.province) : null;
                                 })
                                 .text(function(d) {
-                                    // console.log('District:', d.District);
                                     return d.District || null;
                                 })
-                                .on('mouseover', function(d){
-                                    console.log('clicked:', d);
-                                    tip.show;
+                                .on('mousemove', function(d){
+                                    mousemove(d, root.total);
+                                })
+                                .on('mouseout', function(d){
+                                    mouseout();
                                 });
             });
 

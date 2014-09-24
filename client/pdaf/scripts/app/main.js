@@ -1,4 +1,4 @@
-define(['jquery', 'd3', 'app/chart', 'd3tip'],
+define(['jquery', 'd3', 'app/chart'],
     function($, d3, Chart) {
         console.log('chart?', Chart);
         $(function() {
