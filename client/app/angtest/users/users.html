@@ -1,0 +1,14 @@
+Users list
+<div ng-repeat="user in users">
+    <span>{{user.firstName}}</span>
+    <span>{{user.email}}</span>
+    <span>{{user.password}}</span>
+</div>
+<p class="input-group">
+    <input type="text" class="form-control" placeholder="Add a first name here." ng-model="newUser.firstName">
+    <input type="text" class="form-control" placeholder="Add a email here." ng-model="newUser.email">
+    <input type="text" class="form-control" placeholder="Add a password here." ng-model="newUser.password">
+    <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addUser()">Add New</button>
+    </span>
+</p>

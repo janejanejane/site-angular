@@ -9,6 +9,8 @@ var errors = require('./components/errors');
 module.exports = function(app) {
 
   // Insert routes below
+  app.use('/api/users', require('./api/user'));
+
   app.route('/flap')
     .get(function(req, res){
       res.sendfile(app.get('appPath') +  'flap/index.html');
