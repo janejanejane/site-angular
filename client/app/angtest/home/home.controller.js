@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('siteAngularApp')
-  .controller('AngtestHomeCtrl', function ($scope) {
+  .controller('HomeCtrl', function ($scope) {
     $scope.hello = 'Hello';
   });

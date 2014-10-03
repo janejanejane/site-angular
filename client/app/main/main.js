@@ -12,15 +12,5 @@ angular.module('siteAngularApp')
         url: '/angtest',
         templateUrl: 'app/angtest/angtest.html',
         controller: 'AngtestCtrl'
-      })
-      .state('angtest.home', {
-        url: '/home',
-        templateUrl: 'app/angtest/home/home.html',
-        controller: 'AngtestHomeCtrl'
-      })
-      .state('angtest.home.users', {
-        url: '/users',
-        templateUrl: 'app/angtest/users/users.html',
-        controller: 'UsersCtrl'
       });
   });
