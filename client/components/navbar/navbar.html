@@ -7,13 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">Home</a>
+      <!-- <a ui-sref="angtest.home" class="navbar-brand">Home</a> -->
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav" ng-show="isLoggedIn()">
         <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
             <a ui-sref="{{item.link}}">{{item.title}}</a>
         </li>
+        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().firstName }} {{ getCurrentUser().lastName }}</p> </li>
       </ul>
     </div>
   </div>

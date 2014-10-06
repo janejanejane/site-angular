@@ -1,0 +1,24 @@
+<div class="col-xs-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Completed Date</th>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in tasks">
+                <td>{{task.taskName}}</td>
+                <td>{{task.description}}</td>
+                <td>{{task.dueDate | date: 'mediumDate'}}</td>
+                <td>{{task.completedDate | date: 'mediumDate'}}</td>
+                <td ng-repeat="user in task.user">
+                    {{user.firstName}} {{user.lastName}} - {{user.email}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

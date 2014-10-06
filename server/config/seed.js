@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Task = require('../api/task/task.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -33,6 +34,12 @@ Thing.find({}).remove(function() {
 User.find({}).remove(function() {
   User.create({
     provider: 'local',
+    firstName: 'Sub',
+    lastName: 'Test',
+    email: 'sub@sub.com',
+    password: 'sub'
+  },{
+    provider: 'local',
     firstName: 'Test',
     lastName: 'User',
     email: 'test@test.com',
@@ -46,6 +53,41 @@ User.find({}).remove(function() {
     password: 'admin'
   }, function() {
       console.log('finished populating users');
+
+      Task.find({}).remove(function() {
+        seedTask('Test', 'User', {
+          taskName: 'Grocery',
+          description: 'Buy apple',
+          dueDate: new Date('2015-01-01'),
+          completedDate: new Date('2014-12-01')
+        });
+        seedTask('Test', 'User', {
+          taskName: 'Grocery',
+          description: 'Buy sugar',
+          dueDate: new Date('2015-01-01'),
+          completedDate: new Date('2014-12-01')
+        });
+        seedTask('Sub', 'Test', {
+          taskName: 'Bill',
+          description: 'Pay electricity',
+          dueDate: new Date('2015-10-01'),
+          completedDate: new Date('2014-09-30')
+        });
+
+        function seedTask(firstName, lastName, values){
+          var foundUser;
+
+          User.findOne({'firstName': firstName, 'lastName': lastName}, function (err, user) {
+            foundUser = user;
+            values.user = user._id;
+
+            Task.create(values, function(err, task){
+              foundUser.tasks.push(task._id);
+              foundUser.save();
+            });
+          });
+        };
+      });
     }
   );
 });

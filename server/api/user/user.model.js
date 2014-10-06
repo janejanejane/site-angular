@@ -14,7 +14,8 @@ var UserSchema = new Schema({
   },
   hashedPassword: String,
   provider: String,
-  salt: String
+  salt: String,
+  tasks : [{ type: Schema.Types.ObjectId, ref: 'Task', index: true }]
 });
 
 /**
@@ -94,7 +95,7 @@ var validatePresenceOf = function(value) {
  */
 UserSchema
   .pre('save', function(next) {
-    console.log('save???', this.isNew);
+    console.log(' user save???', this.isNew);
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.hashedPassword))
