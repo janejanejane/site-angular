@@ -35,8 +35,7 @@ TaskSchema
  */
 TaskSchema
   .pre('save', function(next) {
-    console.log('task save???', this.isNew);
-    if (this.isNew) return next();
+    return next();
   });
 
 /**

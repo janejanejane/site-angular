@@ -30,5 +30,58 @@ angular.module('siteAngularApp')
         templateUrl: 'app/angtest/lists/tasks/tasks.html',
         controller: 'TasksCtrl',
         authenticate: true
+      })
+      .state('angtest.tasks.add', {
+        url: '/add',
+        templateUrl: 'app/angtest/lists/tasks/add/tasks.add.html',
+        resolve: {
+          users: function($http, $q){
+            var deferred = $q.defer();
+            console.log('resolve users');
+            try{
+              $http.get('/api/users').success(function(users) {
+                 deferred.resolve(users);
+                 console.log('users value', users);
+              });
+            }catch(e){
+              deferred.reject(e);
+            }
+            return deferred.promise;
+          }
+        },
+        controller: 'TasksAddCtrl',
+        authenticate: true
+      })
+      .state('angtest.tasks.edit', {
+        url: '/edit/:taskId',
+        templateUrl: 'app/angtest/lists/tasks/edit/tasks.edit.html',
+        resolve: {
+          task: function($http, $stateParams, $q){
+            var deferred = $q.defer();
+            try{
+              $http.get('/api/tasks/' + $stateParams.taskId).success(function(task) {
+                 deferred.resolve(task);
+              });
+            }catch(e){
+              deferred.reject(e);
+            }
+            return deferred.promise;
+          },
+          users: function($http, $q){
+            var deferred = $q.defer();
+            console.log('resolve users');
+            try{
+              $http.get('/api/users').success(function(users) {
+                 deferred.resolve(users);
+                 console.log('users value', users);
+              });
+            }catch(e){
+              deferred.reject(e);
+            }
+            return deferred.promise;
+          }
+        },
+        controller: 'TasksEditCtrl',
+        authenticate: true
       });
   });

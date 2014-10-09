@@ -1,0 +1,40 @@
+<div class="col-xs-12">
+    <p class="input-group">
+        <form class="form" name="form" ng-submit="addTask(form)" novalidate>
+            <div class="form-group" ng-class="{ 'has-success': form.taskName.$valid && submitted,
+                                                'has-error': form.taskName.$invalid && submitted }">
+                <label>Task Name</label>
+                <input type="text" name="taskName" class="form-control" ng-model="task.taskName"
+                     required/>
+                <p class="help-block" ng-show="form.taskName.$error.required && submitted">
+                A task name is required
+                </p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-success': form.description.$valid && submitted,
+                                                'has-error': form.description.$invalid && submitted }">
+                <label>Description</label>
+                <input type="text" name="description" class="form-control" ng-model="task.description"
+                     required/>
+                <p class="help-block" ng-show="form.description.$error.required && submitted">
+                A description is required
+                </p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-success': form.user.$valid && submitted,
+                                                'has-error': form.user.$invalid && submitted }">
+                <label>User</label>
+                <select required ng-model="task.user" ng-options="user._id as user.firstName for user in users" name="user" class="form-control">
+                    <option value="">-- choose user --</option>
+                </select>
+                <p class="help-block" ng-show="form.user.$error.required && submitted">
+                A user is required
+                </p>
+            </div>
+
+            <div>
+                <button class="btn btn-primary" type="submit">
+                Submit
+                </button>
+            </div>
+        </form>
+    </p>
+</div>

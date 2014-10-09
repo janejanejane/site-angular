@@ -5,7 +5,7 @@ angular.module('siteAngularApp')
     console.log('UsersAddCtrl!!!!!!');
 
     $scope.errors = {};
-    $scope.users = [];
+    $scope.user = {};
 
     $scope.addUser = function(form) {
       $scope.submitted = true;

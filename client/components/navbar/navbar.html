@@ -14,8 +14,8 @@
         <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
             <a ui-sref="{{item.link}}">{{item.title}}</a>
         </li>
-        <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().firstName }} {{ getCurrentUser().lastName }}</p> </li>
       </ul>
+        <p class="navbar-text pull-right" ng-show="isLoggedIn()">Hello {{ getCurrentUser().firstName }} {{ getCurrentUser().lastName }}</p>
     </div>
   </div>
 </div>

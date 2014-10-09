@@ -14,13 +14,39 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
+  // Task.aggregate([{$group: {_id: '$user'}}]);
+  // Task.aggregate(
+  //   { $group: { _id: { group: '$user' } } },
+  //   function(err, records) {
+  //       console.log(records)
+  //       for(var i in record){
+
+  //       }
+  //       if(err) return res.send(500, err);
+  //       res.json(200, tasks);
+  //   }
+  // );
+
   Task
     .find()
     .populate('user')
     .exec(function (err, tasks) {
         if(err) return res.send(500, err);
         res.json(200, tasks);
+        console.log('exec:', tasks);
+
+        // tasks.aggregate({ $group: { _id: { group: '$user' } } },
+        //   function (err, tasks) {
+        //     console.log('aggregate:', tasks);
+        // })
     });
+  // Task
+  //   .find({}, [], {'group': 'user'})
+  //   .populate('user')
+  //   .exec(function (err, tasks) {
+  //       if(err) return res.send(500, err);
+  //       res.json(200, tasks);
+  //   });
 };
 
 /**
@@ -62,12 +88,17 @@ exports.destroy = function(req, res) {
  * Change a task
  */
 exports.change = function(req, res, next) {
-  var taskId = req.task._id;
+  var taskId = req.params.id,
+      body = req.body;
 
-  User.findById(taskId, function (err, task) {
+  Task.findById(taskId, function (err, task) {
+    task.taskName = body.taskName;
+    task.description = body.description;
+    task.user = body.user;
+
     task.save(function(err) {
-        if (err) return validationError(res, err);
-        res.send(200);
+      if (err) return validationError(res, err);
+      res.send(200);
     });
   });
 };

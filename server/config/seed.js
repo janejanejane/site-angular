@@ -58,7 +58,7 @@ User.find({}).remove(function() {
         seedTask('Test', 'User', {
           taskName: 'Grocery',
           description: 'Buy apple',
-          dueDate: new Date('2015-01-01'),
+          dueDate: new Date('2014-12-30'),
           completedDate: new Date('2014-12-01')
         });
         seedTask('Test', 'User', {
