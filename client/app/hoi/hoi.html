@@ -1,0 +1,17 @@
+<div class="col-xs-6 col-xs-offset-3" ui-view="">
+    <h1>Your birthday alerts:</h1>
+
+    <div class="birthday">
+        <div ng-repeat="alert in alerts" class="col-xs-4 block">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">{{alert.month}}</div>
+                <div class="panel-body">
+                    <p ng-repeat="celebrator in alert.celebrators">{{celebrator.alert_name}} <b>{{checkIfPast(celebrator.alert_time)}}</b> <i>{{celebrator.alert_time | date:'MMMM d'}}</i></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <a ui-sref="hoi.alerts.add">Add alert</a> -->
+</div>

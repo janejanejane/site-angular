@@ -13,6 +13,11 @@ angular.module('siteAngularApp')
         templateUrl: 'app/angtest/angtest.html',
         controller: 'AngtestCtrl',
         authenticate: true
+      })
+      .state('hoi', {
+        url: '/hoi',
+        templateUrl: 'app/hoi/hoi.html',
+        controller: 'HoiCtrl'
       });
   })
 
