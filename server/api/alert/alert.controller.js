@@ -47,15 +47,3 @@ exports.index = function(req, res) {
   //     console.log('aggregate:', alerts);
   //   });
 };
-
-
-/**
- * Creates a new alert
- */
-exports.create = function (req, res, next) {
-  var newAlert = new Alert(req.body);
-  newAlert.save(function(err, alert) {
-    if (err) return validationError(res, err);
-    res.json(alert);
-  });
-};
