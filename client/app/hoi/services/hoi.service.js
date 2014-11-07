@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('siteAngularApp')
-  .factory('HoiService', function ($http, socket) {
+  .factory('HoiService', function ($http) {
     var HoiService = {};
 
     HoiService.getAlertsByMonth = function(callback){

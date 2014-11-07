@@ -5,6 +5,5 @@ var express = require('express'),
     controller = require('./alert.controller');
 
 router.get('/', controller.index);
-router.post('/', controller.create);
 
 module.exports = router;

@@ -9,11 +9,8 @@ var errors = require('./components/errors');
 module.exports = function(app) {
 
   // Insert routes below
-  // app.use('/api/users', require('./api/user'));
-  // app.use('/api/tasks', require('./api/task'));
+  app.use('/api/things', require('./api/thing'));
   app.use('/api/alerts', require('./api/alert'));
-
-  app.use('/auth', require('./auth'));
 
   app.route('/flap')
     .get(function(req, res){

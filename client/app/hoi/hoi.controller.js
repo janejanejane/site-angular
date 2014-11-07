@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('siteAngularApp')
-  .controller('HoiCtrl', function ($scope, $q, socket, HoiService) {
+  .controller('HoiCtrl', function ($scope, $q, HoiService) {
     console.log('HoiCtrl loaded!');
 
     HoiService.getAlertsByMonth(function(alerts){
         $scope.alerts = alerts;
-        socket.syncUpdates('alert', $scope.alerts);
     });
 
     $scope.now = new Date();
