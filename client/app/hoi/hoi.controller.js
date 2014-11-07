@@ -9,6 +9,8 @@ angular.module('siteAngularApp')
         socket.syncUpdates('alert', $scope.alerts);
     });
 
+    $scope.now = new Date();
+
     $scope.checkIfPast = function(birthday){
         var deferred = $q.defer();
         try {

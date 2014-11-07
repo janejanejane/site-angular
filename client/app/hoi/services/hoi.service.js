@@ -43,7 +43,7 @@ angular.module('siteAngularApp')
                 if(birthday.getDate() < today.getDate()){
                     callback('last');
                 } else if(birthday.getDate() === today.getDate()){
-                    callback('now');
+                    callback('is today!');
                 } else {
                     callback('on');
                 }

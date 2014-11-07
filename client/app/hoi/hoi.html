@@ -1,5 +1,6 @@
 <div class="col-xs-6 col-xs-offset-3" ui-view="">
-    <h1>Your birthday alerts:</h1>
+    <h1>Your birthday alerts: </h1>
+    <h4>Today is {{now | date: 'fullDate'}}</h4>
 
     <div class="birthday">
         <div ng-repeat="alert in alerts" class="col-xs-4 block">

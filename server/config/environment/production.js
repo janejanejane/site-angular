@@ -19,5 +19,15 @@ module.exports = {
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost/siteangular'
+  },
+
+  sendgrid: {
+    username: process.env.SENDGRID_USERNAME,
+    password: process.env.SENDGRID_PASSWORD
+  },
+
+  gmail: {
+    username: process.env.GMAIL_USERNAME,
+    password: process.env.GMAIL_PASSWORD
   }
 };

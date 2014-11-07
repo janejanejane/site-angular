@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+var mongoose = require('mongoose'),
+    sendgrid  = require('sendgrid')(
+      process.env.SENDGRID_USERNAME,
+      process.env.SENDGRID_PASSWORD
+    ),
+    mongo = {
+        uri: process.env.MONGOHQ_LOCAL || 'mongodb://localhost/siteangular-dev',
+        options: {
+            db: {
+                safe: true
+            }
+        }
+    },
+    _ = require('lodash'),
+    Alert = require('../server/api/alert/alert.model');
+
+// Connect to database
+mongoose.connect(mongo.uri, mongo.options);
+
+Alert
+    .find(function (err, alerts) {
+        if(err) return Error(err);
+
+        var today = new Date(),
+            result = _.filter(alerts, function(record){
+                console.log('record???', record.alert_name, (record.alert_time.getMonth() === today.getMonth()) && (record.alert_time.getDate() === today.getDate()));
+                if(record){
+                    return ((record.alert_time.getMonth() === today.getMonth()) && (record.alert_time.getDate() === today.getDate()));
+                }
+            });
+
+        if(result.length > 0){
+            sendgrid.send({
+                to: process.env.GMAIL_USERNAME,
+                from: process.env.GMAIL_PASSWORD,
+                subject: 'Birthday alert!',
+                text: result[0].alert_name + ' today.'
+            }, function(err, json) {
+                if (err) {
+                    console.error(err);
+                }
+
+                console.log('email sent!', json);
+                mongoose.connection.close(function () {
+                    console.log('Mongoose default connection with DB is disconnected through app termination');
+                    process.exit(0);
+                });
+            });
+        }
+    });
