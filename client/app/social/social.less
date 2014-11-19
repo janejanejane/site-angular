@@ -1,9 +1,28 @@
 .social-links {
     font-size: 20px;
+    position: absolute;
+    top: 25%;
+    left: 0;
+
+    @media all and (max-width:479px) {
+        top: 10%;
+        a {
+            font-size: 14px;
+        }
+    }
+
+    @media all and (min-width:480px) and (max-width:599px) {
+        top: 10%;
+        a {
+            font-size: 14px;
+        }
+    }
+
     a {
         color: #18bc9c;
         &:hover {
             text-decoration: none;
+            color: darken(#18bc9c, 20%);
         }
     }
 }

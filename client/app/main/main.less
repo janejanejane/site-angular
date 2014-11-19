@@ -6,16 +6,6 @@ a {
     margin-top: 80px;
     margin-bottom: 100px;
 
-    @media only screen
-    and (max-width : 320px) {
-        margin-top: 30px;
-    }
-
-    @media only screen
-    and (max-width : 480px) {
-        margin-top: 30px;
-    }
-
     .photo {
         border-radius: 100%;
         -webkit-border-radius: 100%;
@@ -24,11 +14,49 @@ a {
         -webkit-box-shadow: 0 0 8px #000000;
         -moz-box-shadow: 0 0 8px #000000;
     }
+
+    #greeting {
+        h1 {
+            font-family: 'Ruthie', cursive;
+            font-size: 7em;
+        }
+        position: absolute;
+        top: 35%;
+    }
+
+    #me {
+        background: #202020;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
 }
 
 footer {
     margin-top: 50px;
     position: absolute;
-    width: 100%;
+    margin-left: 33.33%;
     height: 30px;
+    bottom: 0;
+}
+
+@media all and (max-width:479px) {
+    .wrap {
+        #greeting {
+            h1 {
+                font-size: 4em;
+            }
+        }
+    }
+}
+
+@media all and (min-width:480px) and (max-width:599px) {
+   .wrap {
+        #greeting {
+            h1 {
+                font-size: 4em;
+            }
+        }
+    }
 }

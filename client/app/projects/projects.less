@@ -1,0 +1,31 @@
+.project-links {
+    position: absolute;
+    top: 55%;
+    left: 0;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+
+    a {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: none;
+            color: darken(#18bc9c, 20%);
+        }
+
+        @media all and (max-width:479px) {
+            font-size: 12px;
+
+            img {
+                height: 25px;
+            }
+        }
+
+        @media all and (min-width:480px) and (max-width:599px) {
+            font-size: 12px;
+        }
+    }
+}

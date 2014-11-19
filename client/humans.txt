@@ -33,6 +33,9 @@
     URL: http://www.tajfa.com/projects/rondo/
 
 /* SITE */
+    V3
+    Last update:2014/11/19 - Redesign
+
     V2
     Last update:2014/08/28 - Change to angular-fullstack site
 
